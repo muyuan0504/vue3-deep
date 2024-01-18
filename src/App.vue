@@ -1,15 +1,11 @@
 <template>
-    <h1>vue3-app</h1>
-    <header>
-        <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
-
-        <div class="wrapper"></div>
-    </header>
-
-    <main></main>
+    <h1>APP-vue</h1>
+    <UseReactive />
 </template>
 
-<script setup></script>
+<script setup>
+import UseReactive from './components/use-reactive/index'
+</script>
 
 <style scoped>
 header {
