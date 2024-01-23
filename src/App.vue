@@ -2,9 +2,10 @@
     <h1>APP-vue</h1>
     <!-- <UseReactive /> -->
     <!-- <UseComputed /> -->
-    <keep-alive>
+    <!-- <keep-alive>
         <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
-    </keep-alive>
+    </keep-alive> -->
+    <UseWatcher />
 </template>
 
 <script setup>
@@ -12,6 +13,7 @@ import { ref } from 'vue'
 import UseReactive from './components/use-reactive/index'
 import UseComputed from './components/use-computed/index'
 import UseLifehook from './components/use-lifehook/index'
+import UseWatcher from './components/use-watcher/index'
 
 const showFlag = ref(true)
 
