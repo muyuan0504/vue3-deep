@@ -1,11 +1,16 @@
 <template>
     <h1>APP-vue</h1>
+    <p>
+        <span>count: {{ count }}</span>
+        <button @click.stop="handleClick">count++</button>
+    </p>
     <!-- <UseReactive /> -->
     <!-- <UseComputed /> -->
     <!-- <keep-alive>
         <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
     </keep-alive> -->
-    <UseWatcher />
+    <!-- <UseWatcher /> -->
+    <UseProps :count="count" is-flag use-validator />
 </template>
 
 <script setup>
@@ -14,8 +19,12 @@ import UseReactive from './components/use-reactive/index'
 import UseComputed from './components/use-computed/index'
 import UseLifehook from './components/use-lifehook/index'
 import UseWatcher from './components/use-watcher/index'
+import UseProps from './components/use-props/index'
 
 const showFlag = ref(true)
+
+const count = ref(0)
+const handleClick = () => count.value++
 
 const hidenComponent = () => (showFlag.value = false)
 </script>
