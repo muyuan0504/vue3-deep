@@ -1,10 +1,21 @@
 <template>
     <h1>APP-vue</h1>
-    <UseReactive />
+    <!-- <UseReactive /> -->
+    <!-- <UseComputed /> -->
+    <keep-alive>
+        <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
+    </keep-alive>
 </template>
 
 <script setup>
+import { ref } from 'vue'
 import UseReactive from './components/use-reactive/index'
+import UseComputed from './components/use-computed/index'
+import UseLifehook from './components/use-lifehook/index'
+
+const showFlag = ref(true)
+
+const hidenComponent = () => (showFlag.value = false)
 </script>
 
 <style scoped>
