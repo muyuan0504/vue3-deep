@@ -10,7 +10,8 @@
         <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
     </keep-alive> -->
     <!-- <UseWatcher /> -->
-    <UseProps :count="count" is-flag use-validator />
+    <!-- <UseProps :count="count" is-flag use-validator /> -->
+    <UseProvide />
 </template>
 
 <script setup>
@@ -20,12 +21,14 @@ import UseComputed from './components/use-computed/index'
 import UseLifehook from './components/use-lifehook/index'
 import UseWatcher from './components/use-watcher/index'
 import UseProps from './components/use-props/index'
+import UseProvide from './components/use-inject/useProvide'
 
-const showFlag = ref(true)
-
+/** 父子组件props的跨实例更新 */
 const count = ref(0)
 const handleClick = () => count.value++
 
+/** 组件v-if渲染与keep-alive */
+const showFlag = ref(true)
 const hidenComponent = () => (showFlag.value = false)
 </script>
 
