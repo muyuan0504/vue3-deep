@@ -11,7 +11,8 @@
     </keep-alive> -->
     <!-- <UseWatcher /> -->
     <!-- <UseProps :count="count" is-flag use-validator /> -->
-    <UseProvide />
+    <!-- <UseProvide /> -->
+    <UseAsync />
 </template>
 
 <script setup>
@@ -22,6 +23,7 @@ import UseLifehook from './components/use-lifehook/index'
 import UseWatcher from './components/use-watcher/index'
 import UseProps from './components/use-props/index'
 import UseProvide from './components/use-inject/useProvide'
+import UseAsync from './components/use-Async/index'
 
 /** 父子组件props的跨实例更新 */
 const count = ref(0)
