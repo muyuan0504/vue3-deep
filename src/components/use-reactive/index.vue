@@ -1,17 +1,22 @@
 <template>
     <!-- 响应式数据API -->
     <h3>use-reactive</h3>
+    <h5>ref:</h5>
     <p>
-        <span>count: </span>
-        <span>{{ count }}</span>
-    </p>
-    <p>
-        <span>compInfo: </span>
-        <span>{{ compInfo.count }}</span>
-    </p>
-    <p>
+        <span>count: {{ count }}</span>
         <button @click.stop="incremeCount">count++</button>
-        <br />
+    </p>
+    <p>
+        <span>countShallowObj: {{ countShallowObj.count }}</span>
+        <button @click.stop="countShallowObj.count++">countShallowObj.count++</button>
+    </p>
+    <p>
+        <span>countDeepObj: {{ countDeepObj.selfCount.count }}</span>
+        <button @click.stop="handleDeepObj">countDeepObj.selfCount.count++</button>
+    </p>
+    <h5>reactive:</h5>
+    <p>
+        <span>compInfo: {{ compInfo.count }}</span>
         <button @click.stop="incremeCompCount">compInfo.count++</button>
     </p>
 </template>
@@ -37,6 +42,13 @@ import { ref, reactive } from 'vue'
  */
 const count = ref(0)
 const incremeCount = () => count.value++
+
+const countShallowObj = ref({ count: 0 })
+
+const countDeepObj = ref({ selfCount: { count: 0 } })
+const handleDeepObj = () => {
+    console.log(countDeepObj.value.selfCount.count++)
+}
 
 /**
  *  非原始值将通过 reactive() 转换为响应式代理

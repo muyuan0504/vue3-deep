@@ -4,7 +4,7 @@
         <span>count: {{ count }}</span>
         <button @click.stop="handleClick">count++</button>
     </p>
-    <!-- <UseReactive /> -->
+    <UseReactive />
     <!-- <UseComputed /> -->
     <!-- <keep-alive>
         <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
@@ -12,7 +12,7 @@
     <!-- <UseWatcher /> -->
     <!-- <UseProps :count="count" is-flag use-validator /> -->
     <!-- <UseProvide /> -->
-    <UseAsync />
+    <!-- <UseAsync /> -->
 </template>
 
 <script setup>
