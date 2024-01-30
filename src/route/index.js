@@ -2,9 +2,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
 // import RouteA from '../views/RouteA'
-const UseApi = () => import('../UseApi')
-const RouteA = () => import('../views/RouteA')
-const RouteB = () => import('../views/RouteB')
+const UseApi = () => import('@/views/UseApi')
+const RouteA = () => import('@/views/RouteA')
+const RouteB = () => import('@/views/RouteB')
 
 /** routes：路由配置 */
 const routes = [
@@ -34,6 +34,7 @@ const routes = [
     },
     {
         path: '/route-b',
+        name: 'RouteB',
         component: RouteB,
     },
 ]
@@ -50,6 +51,7 @@ const router = createRouter({
     },
 })
 
+/** 全局守卫 */
 router.beforeEach((to, from) => {
     console.log('route from : ', from)
     console.log('route to: ', to)

@@ -1,8 +1,12 @@
 <template>
-    <h3>Route B</h3>
+    <div>
+        <h3>Route B</h3>
+        <UseStore />
+    </div>
 </template>
 
 <script setup>
+import UseStore from '../components/use-store/index'
 import { onMounted } from 'vue'
 
 onMounted(() => {})

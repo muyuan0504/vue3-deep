@@ -9,15 +9,25 @@
 
 // app.mount('#app')
 
-/** vue3 引入 vue-router */
+/** vue3 引入 vue-router, pinia */
 
 import { createApp } from 'vue'
+
 import router from './route/index'
+
+import pinia from './store/index'
 
 import App from './App'
 
 const app = createApp(App)
 
+/**
+ * app.use 本质是将app传入对应的构造函数中 -
+ * app.use = (plugin, ...options) => plugin(app, ...options)
+ */
+
 app.use(router)
+
+app.use(pinia)
 
 app.mount('#app')

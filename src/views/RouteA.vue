@@ -1,11 +1,13 @@
 <template>
-    <h3>router-A</h3>
-    <p>
-        <span>route.params: {{ route.params.id }}</span>
-    </p>
-    <p>
-        <router-link to="/use-api">返回</router-link>
-    </p>
+    <div>
+        <h3>router-A</h3>
+        <p>
+            <span>route.params: {{ route.params.id }}</span>
+        </p>
+        <p>
+            <router-link to="/use-api">返回</router-link>
+        </p>
+    </div>
 </template>
 
 <script setup>
