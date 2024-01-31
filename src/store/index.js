@@ -1,4 +1,4 @@
-import { createPinia, defineStore } from 'pinia'
+import { createPinia, defineStore, storeToRefs } from 'pinia'
 
 import { ref, computed, watch } from 'vue'
 
@@ -8,6 +8,8 @@ import { ref, computed, watch } from 'vue'
  * (比如 `useUserStore`，`useCartStore`，`useProductStore`)
  * 第一个参数是应用中 Store 的唯一 ID;
  * 第二个参数可接受两类值：Setup 函数或 Option 对象
+ *
+ * 一旦 store 被实例化，可以直接访问在 store 的 state、getters 和 actions 中定义的任何属性
  *
  */
 const pinia = createPinia()
@@ -25,10 +27,21 @@ watch(
 const optionStore = {
     state: () => ({ count: 0 }),
     getters: {
-        increase: (state) => state.count++,
+        increase: (state) => {
+            /** getter 可以通过返回函数的形式来接收参数 */
+            return (a) => state.count * a
+        },
+        mixinStore: (state) => {
+            /** 想要使用另一个 store 的 getter 的话，那就直接在 getter 内使用就好 */
+            const store = useCountSetupStore()
+            // const { count } = storeToRefs(store) // 对于 setup 不需要 storeToRefs ，因为本身 setup 内部就对数据进行了响应式处理
+            console.log('??', store.count)
+            return store.count * state.count
+        },
     },
     actions: {
         increment() {
+            // 类似 getter，action 也可通过 this 访问整个 store 实例, 同 getter 样，要使用另一个 store 的话，那你直接在 action 中调用就好了
             this.count++
         },
     },
@@ -45,7 +58,7 @@ export const useCountStore = defineStore('count', optionStore)
  */
 const setupStore = () => {
     const count = ref(0)
-    const increase = computed(() => count.value++)
+    const increase = computed(() => count.value * 2)
     const increment = () => count.value++
 
     // 需要自己创建 $reset 方法

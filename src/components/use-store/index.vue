@@ -2,6 +2,10 @@
     <h6>use store</h6>
     <p>
         <span>count: {{ count }}</span>
+        <br />
+        <span>count-getter: {{ increase(10) }}</span>
+        <br />
+        <div>mixinStore: {{ mixinStore }}</div>
         <button @click.stop="increment">count++</button>
         <button @click.stop="resetCount">count reset</button>
     </p>
@@ -22,7 +26,7 @@ import { storeToRefs } from 'pinia'
 import { useCountStore, useCountSetupStore } from '@/store/index'
 
 const store = useCountStore()
-const { count } = storeToRefs(store)
+const { count, increase, mixinStore } = storeToRefs(store)
 const { increment } = store
 const resetCount = () => {
     // 使用选项式 API 时，可以通过调用 store 的 $reset() 方法将 state 重置为初始值
@@ -33,10 +37,12 @@ const resetCount = () => {
 const storeSetup = useCountSetupStore()
 const { count: countSetup } = storeToRefs(storeSetup)
 const { increment: incrementSetup } = storeSetup
+
 /** 重置 state */
 const resetCountSetup = () => {
     storeSetup.$reset()
 }
+
 /** 变更 state */
 const changeCountSetup = () => {
     storeSetup.$patch((state) => {
