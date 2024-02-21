@@ -2,11 +2,11 @@
     <!-- 为了保证 Transition过渡效果，用div当根节点包裹所有内容 -->
     <div>
         <h1>APP-vue</h1>
-        <p>
+        <!-- <p>
             <span>count: {{ count }}</span>
             <button @click.stop="handleClick">count++</button>
-        </p>
-        <UseReactive />
+        </p> -->
+        <!-- <UseReactive /> -->
         <!-- <UseComputed /> -->
         <!-- <keep-alive>
         <UseLifehook v-if="showFlag" @hidenComponent="hidenComponent" />
@@ -16,7 +16,11 @@
         <!-- <UseProvide /> -->
         <!-- <UseAsync /> -->
         <p>
-            <span>store in route B: {{ countSetup }}</span>
+            <span>store in route B - countStore: {{ countStore.count }}</span>
+            <button @click="countStoreClick">countStore.count++</button>
+            <br />
+            <span>store in route B - countSetup: {{ countSetup }}</span>
+            <button @click="setupClick">countSetup++</button>
         </p>
         <p>
             <button @click.stop="handleRoute">跳转RouteA</button>
@@ -37,9 +41,19 @@ import UseProvide from '../components/use-inject/useProvide'
 import UseAsync from '../components/use-Async/index'
 
 /** 跨组件使用 store  */
-import { useCountSetupStore } from '@/store/index'
+import { storeToRefs } from 'pinia'
+import { useCountStore, useCountSetupStore } from '@/store/index'
+const countStore = useCountStore()
+const countStoreClick = () => {
+    countStore.count++
+}
 const store = useCountSetupStore()
-const { count: countSetup } = store
+const { count: countSetup } = storeToRefs(store) // 由于在组件内部使用了count变量，所以需要使用别名countSetup
+const { increment } = store
+const setupClick = () => {
+    console.log('点击')
+    increment()
+}
 
 /** 父子组件props的跨实例更新 */
 const count = ref(0)

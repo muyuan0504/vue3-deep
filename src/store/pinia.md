@@ -41,4 +41,6 @@ export const useCountSetupStore = defineStore('countSetup', setupStore)
 
 -   getter
 
+Getter 完全等同于 store 的 state 的计算值，可以通过 defineStore() 中的 getters 属性来定义它们
+
 -   action
